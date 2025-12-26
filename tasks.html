@@ -1,298 +1,55 @@
+<!-- tasks.html - Similar structure to index.html with task-specific content -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tasks - Momentum</title>
+    <title>Momentum - Tasks</title>
+    <link rel="manifest" href="/manifest.json">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/animations.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <nav class="bottom-nav">
-        <div class="nav-container">
-            <a href="index.html" class="nav-item">
-                <svg class="nav-icon" viewBox="0 0 24 24">
-                    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
-                </svg>
-                <span class="nav-label">Dashboard</span>
-            </a>
-            <a href="tasks.html" class="nav-item active">
-                <svg class="nav-icon" viewBox="0 0 24 24">
-                    <path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
-                </svg>
-                <span class="nav-label">Tasks</span>
-            </a>
-            <a href="summary.html" class="nav-item">
-                <svg class="nav-icon" viewBox="0 0 24 24">
-                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
-                </svg>
-                <span class="nav-label">Summary</span>
-            </a>
-            <a href="settings.html" class="nav-item">
-                <svg class="nav-icon" viewBox="0 0 24 24">
-                    <path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/>
-                </svg>
-                <span class="nav-label">Settings</span>
-            </a>
-            <a href="about.html" class="nav-item">
-                <svg class="nav-icon" viewBox="0 0 24 24">
-                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
-                </svg>
-                <span class="nav-label">About</span>
-            </a>
-        </div>
-    </nav>
-
-    <main class="tasks-container-page">
-        <header class="page-header">
-            <h1>All Tasks</h1>
-            <div class="header-actions">
-                <button id="filter-tasks" class="icon-btn">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z"/>
-                    </svg>
-                </button>
-                <button id="sort-tasks" class="icon-btn">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M3 18h6v-2H3v2zM3 6v2h18V6H3zm0 7h12v-2H3v2z"/>
-                    </svg>
-                </button>
+    <!-- Same navigation as index.html -->
+    
+    <main class="main-content">
+        <div class="container">
+            <h2>Today's Tasks</h2>
+            
+            <!-- Task Form -->
+            <form id="taskForm" class="task-form">
+                <div class="form-group">
+                    <label for="taskTime">Time</label>
+                    <input type="time" id="taskTime" class="form-control">
+                </div>
+                
+                <div class="form-group">
+                    <label for="taskTitle">Task Title *</label>
+                    <input type="text" id="taskTitle" class="form-control" required 
+                           placeholder="What do you need to do?">
+                </div>
+                
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="taskMustDo">
+                    <label for="taskMustDo">Must-do task (max 3 per day)</label>
+                </div>
+                
+                <div class="form-group">
+                    <label for="taskChallenge">Optional Challenge</label>
+                    <textarea id="taskChallenge" class="form-control" 
+                              placeholder="Add a personal challenge or twist..."></textarea>
+                </div>
+                
+                <button type="submit" class="btn-primary">Add Task</button>
+            </form>
+            
+            <!-- Task List -->
+            <div id="taskList" class="task-list-container">
+                <!-- Tasks will be loaded here by tasks.js -->
             </div>
-        </header>
-
-        <!-- Task Filters -->
-        <div class="filters-container" id="filters-container">
-            <div class="filter-options">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="pending">Pending</button>
-                <button class="filter-btn" data-filter="completed">Completed</button>
-                <button class="filter-btn" data-filter="must-do">Must Do</button>
-                <button class="filter-btn" data-filter="skipped">Skipped</button>
-            </div>
-        </div>
-
-        <!-- Tasks List -->
-        <div class="tasks-list" id="tasks-list">
-            <!-- Tasks will be loaded dynamically -->
-        </div>
-
-        <!-- Empty State -->
-        <div class="empty-state" id="empty-state">
-            <div class="empty-state-icon">
-                <svg viewBox="0 0 24 24">
-                    <path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/>
-                </svg>
-            </div>
-            <h3>No tasks yet</h3>
-            <p>Add your first task to get started</p>
-            <button id="add-first-task" class="primary-btn">Add Task</button>
-        </div>
-
-        <!-- Add Task Button -->
-        <div class="floating-action-btn">
-            <button id="add-task-floating" class="fab-btn">
-                <svg viewBox="0 0 24 24">
-                    <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
-                </svg>
-            </button>
         </div>
     </main>
-
-    <!-- Task Detail Modal -->
-    <div id="task-detail-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 id="detail-task-title">Task Title</h3>
-                <button class="close-modal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="task-detail-info">
-                    <div class="detail-item">
-                        <svg class="detail-icon" viewBox="0 0 24 24">
-                            <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
-                        </svg>
-                        <div>
-                            <label>Time</label>
-                            <p id="detail-task-time">7:00 AM</p>
-                        </div>
-                    </div>
-                    <div class="detail-item">
-                        <svg class="detail-icon" viewBox="0 0 24 24">
-                            <path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm0 4c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm6 12H6v-1.4c0-2 4-3.1 6-3.1s6 1.1 6 3.1V19z"/>
-                        </svg>
-                        <div>
-                            <label>Status</label>
-                            <p id="detail-task-status">Pending</p>
-                        </div>
-                    </div>
-                    <div class="detail-item">
-                        <svg class="detail-icon" viewBox="0 0 24 24">
-                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-                        </svg>
-                        <div>
-                            <label>Priority</label>
-                            <p id="detail-task-priority">Normal</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="task-detail-notes">
-                    <h4>Notes</h4>
-                    <p id="detail-task-notes">No additional notes provided.</p>
-                </div>
-
-                <div class="task-detail-actions">
-                    <button id="mark-complete-btn" class="primary-btn full-width">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-                        </svg>
-                        Mark Complete
-                    </button>
-                    <button id="skip-task-btn" class="secondary-btn full-width">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
-                        </svg>
-                        Skip Task
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Add Task Modal (same as index.html) -->
-    <div id="task-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Add New Task</h3>
-                <button class="close-modal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <form id="task-form">
-                    <div class="form-group">
-                        <label for="task-title">Task Title</label>
-                        <input type="text" id="task-title" placeholder="What needs to be done?" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="task-time">Time</label>
-                        <input type="time" id="task-time" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="task-duration">Duration (minutes)</label>
-                        <input type="number" id="task-duration" min="5" max="240" value="30">
-                    </div>
-                    <div class="form-group">
-                        <label class="checkbox-label">
-                            <input type="checkbox" id="task-must-do">
-                            <span class="checkmark"></span>
-                            Mark as Must-Do Task
-                        </label>
-                    </div>
-                    <div class="form-group">
-                        <label for="task-notes">Notes (Optional)</label>
-                        <textarea id="task-notes" rows="3" placeholder="Additional details..."></textarea>
-                    </div>
-                    <button type="submit" class="primary-btn full-width">Add Task</button>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <script src="js/storage.js"></script>
-    <script src="js/tasks.js"></script>
-    <script src="js/app.js"></script>
-    <script>
-        // Tasks page specific JavaScript
-        document.addEventListener('DOMContentLoaded', function() {
-            const tasksList = document.getElementById('tasks-list');
-            const emptyState = document.getElementById('empty-state');
-            const filterBtns = document.querySelectorAll('.filter-btn');
-            
-            // Load and display tasks
-            function loadTasks(filter = 'all') {
-                const tasks = JSON.parse(localStorage.getItem('momentum_tasks') || '[]');
-                
-                if (tasks.length === 0) {
-                    tasksList.style.display = 'none';
-                    emptyState.style.display = 'block';
-                    return;
-                }
-                
-                tasksList.style.display = 'block';
-                emptyState.style.display = 'none';
-                
-                // Filter tasks
-                let filteredTasks = tasks;
-                if (filter !== 'all') {
-                    filteredTasks = tasks.filter(task => {
-                        if (filter === 'pending') return !task.completed && !task.skipped;
-                        if (filter === 'completed') return task.completed;
-                        if (filter === 'must-do') return task.mustDo;
-                        if (filter === 'skipped') return task.skipped;
-                        return true;
-                    });
-                }
-                
-                // Display tasks
-                tasksList.innerHTML = filteredTasks.map(task => `
-                    <div class="task-card ${task.mustDo ? 'must-do-card' : ''} ${task.completed ? 'completed' : ''} ${task.skipped ? 'skipped' : ''}" data-task-id="${task.id}">
-                        <div class="task-card-header">
-                            <h3 class="task-card-title">${task.title}</h3>
-                            <span class="task-card-time">${task.time}</span>
-                        </div>
-                        <div class="task-card-body">
-                            <p class="task-card-notes">${task.notes || 'No additional notes'}</p>
-                            <div class="task-card-tags">
-                                ${task.mustDo ? '<span class="task-tag must-do-tag">Must Do</span>' : ''}
-                                ${task.completed ? '<span class="task-tag completed-tag">Completed</span>' : ''}
-                                ${task.skipped ? '<span class="task-tag skipped-tag">Skipped</span>' : ''}
-                                ${task.skipReason ? `<span class="task-tag reason-tag">${task.skipReason}</span>` : ''}
-                            </div>
-                        </div>
-                        <div class="task-card-actions">
-                            ${!task.completed && !task.skipped ? `
-                                <button class="task-card-btn complete-btn" data-task-id="${task.id}">
-                                    <svg viewBox="0 0 24 24">
-                                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-                                    </svg>
-                                </button>
-                                <button class="task-card-btn skip-btn" data-task-id="${task.id}">
-                                    <svg viewBox="0 0 24 24">
-                                        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
-                                    </svg>
-                                </button>
-                            ` : ''}
-                            <button class="task-card-btn detail-btn" data-task-id="${task.id}">
-                                <svg viewBox="0 0 24 24">
-                                    <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                `).join('');
-            }
-            
-            // Filter tasks
-            filterBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    filterBtns.forEach(b => b.classList.remove('active'));
-                    this.classList.add('active');
-                    loadTasks(this.dataset.filter);
-                });
-            });
-            
-            // Add task button
-            document.getElementById('add-task-floating').addEventListener('click', () => {
-                document.getElementById('task-modal').style.display = 'block';
-            });
-            
-            document.getElementById('add-first-task').addEventListener('click', () => {
-                document.getElementById('task-modal').style.display = 'block';
-            });
-            
-            // Initial load
-            loadTasks();
-        });
-    </script>
+    
+    <!-- Same bottom nav and scripts as index.html -->
+    <script src="js/tasks.js" defer></script>
 </body>
 </html>
