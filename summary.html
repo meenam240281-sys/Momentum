@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summary - Momentum</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="bottom-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-item">
+                <svg class="nav-icon" viewBox="0 0 24 24">
+                    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                </svg>
+                <span class="nav-label">Dashboard</span>
+            </a>
+            <a href="tasks.html" class="nav-item">
+                <svg class="nav-icon" viewBox="0 0 24 24">
+                    <path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                </svg>
+                <span class="nav-label">Tasks</span>
+            </a>
+            <a href="summary.html" class="nav-item active">
+                <svg class="nav-icon" viewBox="0 0 24 24">
+                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+                </svg>
+                <span class="nav-label">Summary</span>
+            </a>
+            <a href="settings.html" class="nav-item">
+                <svg class="nav-icon" viewBox="0 0 24 24">
+                    <path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/>
+                </svg>
+                <span class="nav-label">Settings</span>
+            </a>
+            <a href="about.html" class="nav-item">
+                <svg class="nav-icon" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                </svg>
+                <span class="nav-label">About</span>
+            </a>
+        </div>
+    </nav>
+
+    <main class="summary-container">
+        <header class="page-header">
+            <h1>Daily Summary</h1>
+            <div class="date-display">
+                <span id="summary-date">Today</span>
+            </div>
+        </header>
+
+        <!-- Stats Overview -->
+        <section class="stats-overview">
+            <div class="stat-card">
+                <div class="stat-icon completed">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                    </svg>
+                </div>
+                <div class="stat-info">
+                    <h3 id="completed-tasks">0</h3>
+                    <p>Completed</p>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon pending">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                    </svg>
+                </div>
+                <div class="stat-info">
+                    <h3 id="pending-tasks">0</h3>
+                    <p>Pending</p>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon skipped">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                    </svg>
+                </div>
+                <div class="stat-info">
+                    <h3 id="skipped-tasks">0</h3>
+                    <p>Skipped</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Streak & Progress -->
+        <section class="streak-section">
+            <h2 class="section-title">🔥 Your Streak</h2>
+            <div class="streak-display-large">
+                <div class="streak-number">
+                    <span id="current-streak-display">0</span>
+                    <small>days</small>
+                </div>
+                <div class="streak-info">
+                    <h3>Current Streak</h3>
+                    <p>Keep going! Don't break the chain.</p>
+                    <div class="streak-calendar">
+                        <!-- Streak days will be populated here -->
+                        <div class="streak-day active"></div>
+                        <div class="streak-day active"></div>
+                        <div class="streak-day active"></div>
+                        <div class="streak-day"></div>
+                        <div class="streak-day"></div>
+                        <div class="streak-day"></div>
+                        <div class="streak-day"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="progress-milestone">
+                <h4>Next Milestone: <span id="next-milestone">7 days</span></h4>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="streak-progress" style="width: 42%"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skip Bank -->
+        <section class="skip-bank-section">
+            <h2 class="section-title">💭 Skip Bank</h2>
+            <div class="skip-bank-card">
+                <div class="skip-bank-header">
+                    <h3>Reasons for Skipping Tasks</h3>
+                    <span class="skip-count" id="skip-count">0 skips</span>
+                </div>
+                <div class="skip-reasons" id="skip-reasons">
+                    <!-- Skip reasons will be populated here -->
+                    <p class="empty-skip">No tasks skipped today.</p>
+                </div>
+                <div class="skip-insight">
+                    <h4>Insight:</h4>
+                    <p id="skip-insight">You're doing great! Keep up the momentum.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tomorrow's Preview -->
+        <section class="tomorrow-section">
+            <h2 class="section-title">🔮 Tomorrow's Preview</h2>
+            <div class="tomorrow-card">
+                <div class="tomorrow-header">
+                    <h3>Ready for Tomorrow?</h3>
+                    <button id="prepare-tomorrow" class="secondary-btn">Prepare</button>
+                </div>
+                
+                <div class="tomorrow-tasks" id="tomorrow-tasks">
+                    <!-- Tomorrow's tasks will be populated here -->
+                    <p class="empty-tomorrow">No tasks scheduled for tomorrow yet.</p>
+                </div>
+                
+                <div class="tomorrow-actions">
+                    <button id="copy-today-tasks" class="text-btn">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                        </svg>
+                        Copy Today's Tasks
+                    </button>
+                    <button id="clear-tomorrow" class="text-btn danger">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+                        </svg>
+                        Clear All
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Daily Reflection -->
+        <section class="reflection-section">
+            <h2 class="section-title">📝 Daily Reflection</h2>
+            <div class="reflection-card">
+                <div class="reflection-prompt">
+                    <h3>How was your day?</h3>
+                    <p>Take a moment to reflect on what went well and what could be improved.</p>
+                </div>
+                
+                <div class="reflection-form">
+                    <div class="form-group">
+                        <label>What was your biggest achievement today?</label>
+                        <textarea id="achievement-text" rows="2" placeholder="I successfully completed..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>What could have gone better?</label>
+                        <textarea id="improvement-text" rows="2" placeholder="Next time I'll..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>How do you feel right now?</label>
+                        <div class="mood-selector">
+                            <button class="mood-btn" data-mood="1">😔</button>
+                            <button class="mood-btn" data-mood="2">😐</button>
+                            <button class="mood-btn" data-mood="3">🙂</button>
+                            <button class="mood-btn" data-mood="4">😊</button>
+                            <button class="mood-btn" data-mood="5">🤩</button>
+                        </div>
+                    </div>
+                    
+                    <button id="save-reflection" class="primary-btn full-width">Save Reflection</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Weekly Statistics -->
+        <section class="weekly-stats">
+            <h2 class="section-title">📈 Weekly Overview</h2>
+            <div class="stats-chart">
+                <div class="chart-container">
+                    <canvas id="weekly-chart"></canvas>
+                </div>
+                <div class="chart-legend">
+                    <div class="legend-item">
+                        <span class="legend-color completed"></span>
+                        <span>Completed</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color skipped"></span>
+                        <span>Skipped</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Prepare Tomorrow Modal -->
+    <div id="prepare-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Prepare for Tomorrow</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="prepare-options">
+                    <div class="prepare-option">
+                        <h4>📋 Carry Over Unfinished</h4>
+                        <p>Move today's incomplete tasks to tomorrow</p>
+                        <button id="carry-over-tasks" class="secondary-btn full-width">Carry Over</button>
+                    </div>
+                    
+                    <div class="prepare-option">
+                        <h4>🔄 Repeat Today's Schedule</h4>
+                        <p>Duplicate today's complete schedule</p>
+                        <button id="repeat-schedule" class="secondary-btn full-width">Repeat</button>
+                    </div>
+                    
+                    <div class="prepare-option">
+                        <h4>🎯 Create New Schedule</h4>
+                        <p>Start fresh with new tasks</p>
+                        <button id="create-new-schedule" class="primary-btn full-width">Create New</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load summary data
+            function loadSummaryData() {
+                const tasks = JSON.parse(localStorage.getItem('momentum_tasks') || '[]');
+                const today = new Date().toISOString().split('T')[0];
+                
+                // Filter today's tasks
+                const todayTasks = tasks.filter(task => task.date === today);
+                
+                // Calculate stats
+                const completed = todayTasks.filter(t => t.completed).length;
+                const pending = todayTasks.filter(t => !t.completed && !t.skipped).length;
+                const skipped = todayTasks.filter(t => t.skipped).length;
+                
+                // Update stats
+                document.getElementById('completed-tasks').textContent = completed;
+                document.getElementById('pending-tasks').textContent = pending;
+                document.getElementById('skipped-tasks').textContent = skipped;
+                
+                // Load skip reasons
+                const skipBank = JSON.parse(localStorage.getItem('momentum_skip_bank') || '[]');
+                const todaySkips = skipBank.filter(skip => skip.date === today);
+                
+                document.getElementById('skip-count').textContent = `${todaySkips.length} ${todaySkips.length === 1 ? 'skip' : 'skips'}`;
+                
+                const skipReasonsContainer = document.getElementById('skip-reasons');
+                if (todaySkips.length > 0) {
+                    skipReasonsContainer.innerHTML = todaySkips.map(skip => `
+                        <div class="skip-reason-item">
+                            <span class="skip-task">${skip.taskTitle}</span>
+                            <span class="skip-reason">${skip.reason}</span>
+                        </div>
+                    `).join('');
+                    
+                    // Generate insight
+                    const insight = generateSkipInsight(todaySkips);
+                    document.getElementById('skip-insight').textContent = insight;
+                } else {
+                    skipReasonsContainer.innerHTML = '<p class="empty-skip">No tasks skipped today.</p>';
+                }
+                
+                // Load streak
+                const streak = parseInt(localStorage.getItem('momentum_streak') || '0');
+                document.getElementById('current-streak-display').textContent = streak;
+                
+                // Update progress
+                const progress = Math.min((streak % 7) * 100 / 7, 100);
+                document.getElementById('streak-progress').style.width = `${progress}%`;
+                document.getElementById('next-milestone').textContent = `${7 - (streak % 7)} days to ${Math.ceil((streak + 1) / 7) * 7} days`;
+                
+                // Load tomorrow's tasks
+                const tomorrow = new Date();
+                tomorrow.setDate(tomorrow.getDate() + 1);
+                const tomorrowStr = tomorrow.toISOString().split('T')[0];
+                const tomorrowTasks = tasks.filter(task => task.date === tomorrowStr);
+                
+                const tomorrowContainer = document.getElementById('tomorrow-tasks');
+                if (tomorrowTasks.length > 0) {
+                    tomorrowContainer.innerHTML = tomorrowTasks.map(task => `
+                        <div class="tomorrow-task-item ${task.mustDo ? 'must-do' : ''}">
+                            <span class="tomorrow-task-time">${task.time}</span>
+                            <span class="tomorrow-task-title">${task.title}</span>
+                            ${task.mustDo ? '<span class="tomorrow-task-badge">Must Do</span>' : ''}
+                        </div>
+                    `).join('');
+                } else {
+                    tomorrowContainer.innerHTML = '<p class="empty-tomorrow">No tasks scheduled for tomorrow yet.</p>';
+                }
+                
+                // Update date
+                const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                document.getElementById('summary-date').textContent = new Date().toLocaleDateString('en-US', options);
+            }
+            
+            function generateSkipInsight(skips) {
+                if (skips.length === 0) return "You're doing great! Keep up the momentum.";
+                
+                const reasons = skips.map(s => s.reason);
+                const frequency = {};
+                reasons.forEach(reason => {
+                    frequency[reason] = (frequency[reason] || 0) + 1;
+                });
+                
+                const mostCommon = Object.keys(frequency).reduce((a, b) => frequency[a] > frequency[b] ? a : b);
+                
+                if (mostCommon.includes('busy')) {
+                    return "Consider scheduling fewer tasks or allocating more time for each.";
+                } else if (mostCommon.includes('well')) {
+                    return "Take care of your health first. Consider lighter tasks when not feeling well.";
+                } else if (mostCommon.includes('time')) {
+                    return "Try breaking tasks into smaller chunks or adjusting time estimates.";
+                } else {
+                    return "Reflect on why tasks were skipped and adjust your schedule accordingly.";
+                }
+            }
+            
+            // Prepare tomorrow button
+            document.getElementById('prepare-tomorrow').addEventListener('click', function() {
+                document.getElementById('prepare-modal').style.display = 'block';
+            });
+            
+            // Prepare tomorrow options
+            document.getElementById('carry-over-tasks').addEventListener('click', function() {
+                carryOverTasks();
+            });
+            
+            document.getElementById('repeat-schedule').addEventListener('click', function() {
+                repeatSchedule();
+            });
+            
+            document.getElementById('create-new-schedule').addEventListener('click', function() {
+                window.location.href = 'tasks.html';
+            });
+            
+            function carryOverTasks() {
+                const tasks = JSON.parse(localStorage.getItem('momentum_tasks') || '[]');
+                const today = new Date().toISOString().split('T')[0];
+                const tomorrow = new Date();
+                tomorrow.setDate(tomorrow.getDate() + 1);
+                const tomorrowStr = tomorrow.toISOString().split('T')[0];
+                
+                // Find today's incomplete tasks
+                const incompleteTasks = tasks.filter(task => 
+                    task.date === today && !task.completed && !task.skipped
+                );
+                
+                // Move them to tomorrow
+                incompleteTasks.forEach(task => {
+                    task.date = tomorrowStr;
+                    // Shift time by adding 24 hours
+                    const [hours, minutes] = task.time.split(':').map(Number);
+                    const date = new Date();
+                    date.setHours(hours, minutes);
+                    date.setDate(date.getDate() + 1);
+                    task.time = `${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`;
+                });
+                
+                localStorage.setItem('momentum_tasks', JSON.stringify(tasks));
+                alert(`${incompleteTasks.length} tasks carried over to tomorrow.`);
+                document.getElementById('prepare-modal').style.display = 'none';
+                loadSummaryData();
+            }
+            
+            function repeatSchedule() {
+                const tasks = JSON.parse(localStorage.getItem('momentum_tasks') || '[]');
+                const today = new Date().toISOString().split('T')[0];
+                const tomorrow = new Date();
+                tomorrow.setDate(tomorrow.getDate() + 1);
+                const tomorrowStr = tomorrow.toISOString().split('T')[0];
+                
+                // Find today's tasks
+                const todayTasks = tasks.filter(task => task.date === today);
+                
+                // Create copies for tomorrow
+                const tomorrowTasks = todayTasks.map(task => ({
+                    ...task,
+                    id: Date.now() + Math.random(),
+                    date: tomorrowStr,
+                    completed: false,
+                    skipped: false,
+                    skipReason: ''
+                }));
+                
+                // Add to tasks
+                tasks.push(...tomorrowTasks);
+                localStorage.setItem('momentum_tasks', JSON.stringify(tasks));
+                alert(`${todayTasks.length} tasks duplicated for tomorrow.`);
+                document.getElementById('prepare-modal').style.display = 'none';
+                loadSummaryData();
+            }
+            
+            // Initialize
+            loadSummaryData();
+            
+            // Set up weekly chart
+            const ctx = document.getElementById('weekly-chart').getContext('2d');
+            const weeklyChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                    datasets: [
+                        {
+                            label: 'Completed',
+                            data: [5, 7, 3, 8, 6, 4, 9],
+                            backgroundColor: '#4fd1c5',
+                            borderRadius: 4
+                        },
+                        {
+                            label: 'Skipped',
+                            data: [1, 0, 2, 0, 1, 3, 0],
+                            backgroundColor: '#ed64a6',
+                            borderRadius: 4
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                stepSize: 2
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
