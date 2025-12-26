@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Momentum - Your daily productivity companion. Track tasks, build streaks, and stay motivated.">
+    <meta name="keywords" content="productivity, tasks, motivation, streaks, daily planner, PWA">
+    <meta name="theme-color" content="#667eea">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <title>Momentum - Dashboard</title>
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Icons -->
+    <link rel="icon" type="image/png" href="icons/icon-72x72.png">
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    
+    <!-- PWA Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('js/service-worker.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registered: ', registration.scope);
+                    }).catch(error => {
+                        console.log('ServiceWorker registration failed: ', error);
+                    });
+            });
+        }
+    </script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="bottom-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-item active">
+                <svg class="nav-icon" viewBox="0 0 24 24">
+                    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                </svg>
+                <span class="nav-label">Dashboard</span>
+            </a>
+            <a href="tasks.html" class="nav-item">
+                <svg class="nav-icon" viewBox="0 0 24 24">
+                    <path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                </svg>
+                <span class="nav-label">Tasks</span>
+            </a>
+            <a href="summary.html" class="nav-item">
+                <svg class="nav-icon" viewBox="0 0 24 24">
+                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+                </svg>
+                <span class="nav-label">Summary</span>
+            </a>
+            <a href="settings.html" class="nav-item">
+                <svg class="nav-icon" viewBox="0 0 24 24">
+                    <path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/>
+                </svg>
+                <span class="nav-label">Settings</span>
+            </a>
+            <a href="about.html" class="nav-item">
+                <svg class="nav-icon" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                </svg>
+                <span class="nav-label">About</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="dashboard-container">
+        <!-- Header with Date and Streak -->
+        <header class="dashboard-header">
+            <div class="date-display">
+                <h1 id="current-date">Today</h1>
+                <p id="current-time">Loading...</p>
+            </div>
+            <div class="streak-display">
+                <div class="streak-circle">
+                    <span id="current-streak">7</span>
+                    <small>Days</small>
+                </div>
+                <p class="streak-label">Current Streak</p>
+            </div>
+        </header>
+
+        <!-- Motivational Quote -->
+        <section class="motivation-card">
+            <div class="quote-content">
+                <p id="motivational-quote">"The secret of getting ahead is getting started."</p>
+                <small>- Mark Twain</small>
+            </div>
+            <button id="refresh-quote" class="icon-btn">
+                <svg viewBox="0 0 24 24">
+                    <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
+                </svg>
+            </button>
+        </section>
+
+        <!-- Today's Schedule -->
+        <section class="schedule-section">
+            <div class="section-header">
+                <h2>Today's Schedule</h2>
+                <div class="stats">
+                    <span class="stat-badge">
+                        <span id="completed-count">0</span>/<span id="total-tasks">0</span> Done
+                    </span>
+                </div>
+            </div>
+
+            <div class="tasks-container" id="tasks-container">
+                <!-- Tasks will be dynamically loaded here -->
+                <div class="task-item must-do">
+                    <div class="task-checkbox">
+                        <input type="checkbox" id="task-1" class="task-check">
+                        <label for="task-1"></label>
+                    </div>
+                    <div class="task-content">
+                        <h3 class="task-title">Morning Exercise</h3>
+                        <p class="task-time">7:00 AM - 7:30 AM</p>
+                        <span class="task-badge must-do-badge">Must Do</span>
+                    </div>
+                    <div class="task-actions">
+                        <button class="task-action-btn skip-btn" data-task="1">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="task-item">
+                    <div class="task-checkbox">
+                        <input type="checkbox" id="task-2" class="task-check">
+                        <label for="task-2"></label>
+                    </div>
+                    <div class="task-content">
+                        <h3 class="task-title">Read 20 Pages</h3>
+                        <p class="task-time">8:00 AM - 8:30 AM</p>
+                    </div>
+                    <div class="task-actions">
+                        <button class="task-action-btn skip-btn" data-task="2">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="add-task-btn-container">
+                <button id="add-task-btn" class="primary-btn">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                    </svg>
+                    Add New Task
+                </button>
+            </div>
+        </section>
+
+        <!-- Progress Section -->
+        <section class="progress-section">
+            <h2>Weekly Progress</h2>
+            <div class="progress-bars">
+                <div class="progress-item">
+                    <div class="progress-label">Productivity</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 75%"></div>
+                    </div>
+                    <div class="progress-value">75%</div>
+                </div>
+                <div class="progress-item">
+                    <div class="progress-label">Completion</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 60%"></div>
+                    </div>
+                    <div class="progress-value">60%</div>
+                </div>
+                <div class="progress-item">
+                    <div class="progress-label">Consistency</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 90%"></div>
+                    </div>
+                    <div class="progress-value">90%</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Task Modal -->
+    <div id="task-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add New Task</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="task-form">
+                    <div class="form-group">
+                        <label for="task-title">Task Title</label>
+                        <input type="text" id="task-title" placeholder="What needs to be done?" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="task-time">Time</label>
+                        <input type="time" id="task-time" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="task-duration">Duration (minutes)</label>
+                        <input type="number" id="task-duration" min="5" max="240" value="30">
+                    </div>
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="task-must-do">
+                            <span class="checkmark"></span>
+                            Mark as Must-Do Task
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="task-notes">Notes (Optional)</label>
+                        <textarea id="task-notes" rows="3" placeholder="Additional details..."></textarea>
+                    </div>
+                    <button type="submit" class="primary-btn full-width">Add Task</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Skip Reason Modal -->
+    <div id="skip-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Skip Task</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="skip-form">
+                    <div class="form-group">
+                        <label>Select Reason for Skipping</label>
+                        <div class="reason-options">
+                            <label class="radio-label">
+                                <input type="radio" name="skip-reason" value="Not feeling well">
+                                <span class="radiomark"></span>
+                                Not feeling well
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="skip-reason" value="Too busy">
+                                <span class="radiomark"></span>
+                                Too busy
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="skip-reason" value="Need more time">
+                                <span class="radiomark"></span>
+                                Need more time
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="skip-reason" value="Other priority">
+                                <span class="radiomark"></span>
+                                Other priority
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="custom-reason">Custom Reason (Optional)</label>
+                        <input type="text" id="custom-reason" placeholder="Your own reason...">
+                    </div>
+                    <button type="submit" class="secondary-btn full-width">Skip Task</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wake-up Alarm Modal -->
+    <div id="alarm-modal" class="modal fullscreen-modal">
+        <div class="modal-content alarm-content">
+            <div class="alarm-header">
+                <div class="alarm-time">7:00 AM</div>
+                <h2>Good Morning! 🌅</h2>
+                <p id="alarm-message">Time to start your day with purpose!</p>
+            </div>
+            
+            <div class="alarm-body">
+                <div class="alarm-quote">
+                    <p>"Every morning brings new potential, but only if you make the most of it."</p>
+                </div>
+                
+                <div class="today-preview">
+                    <h3>Today's Must-Do Tasks</h3>
+                    <ul id="today-tasks-preview">
+                        <li>Morning Exercise (7:00 AM)</li>
+                        <li>Read 20 Pages (8:00 AM)</li>
+                        <li>Plan Day (9:00 AM)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="alarm-actions">
+                <button id="snooze-alarm" class="alarm-btn secondary-btn">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M7.88 3.39L6.6 1.86 2 5.71l1.29 1.53 4.59-3.85zM22 5.72l-4.6-3.86-1.29 1.53 4.6 3.86L22 5.72zM12 4c-4.97 0-9 4.03-9 9s4.02 9 9 9c4.97 0 9-4.03 9-9s-4.03-9-9-9zm0 16c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7zm-3-9h3.63L9 15.2V17h6v-2h-3.63L15 10.8V9H9v2z"/>
+                    </svg>
+                    Snooze (5 min)
+                </button>
+                <button id="dismiss-alarm" class="alarm-btn primary-btn">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
+                    </svg>
+                    Start My Day
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Install Prompt -->
+    <div id="install-prompt" class="install-prompt">
+        <div class="prompt-content">
+            <svg class="prompt-icon" viewBox="0 0 24 24">
+                <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+            </svg>
+            <div class="prompt-text">
+                <h4>Install Momentum</h4>
+                <p>Add to home screen for quick access</p>
+            </div>
+            <div class="prompt-actions">
+                <button id="install-cancel" class="text-btn">Not Now</button>
+                <button id="install-confirm" class="primary-btn">Install</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/storage.js"></script>
+    <script src="js/tasks.js"></script>
+    <script src="js/notifications.js"></script>
+    <script src="js/app.js"></script>
+</body>
+                          </html>
