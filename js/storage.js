@@ -90,7 +90,7 @@ class StorageManager {
     getDefaultSettings() {
         return {
             wakeupTime: '07:00',
-            alarmSound: 'chime',
+            alarmSound: 'homecoming',
             vibration: true,
             alarmMessage: 'Time to start your day with purpose!',
             mustDoCount: 3,
